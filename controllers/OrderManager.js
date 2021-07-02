@@ -3,13 +3,13 @@ const Order = require("../models/Order").Order;
 class OrderManager {
   constructor() {}
 
-  storeReview(reviewDetails) {
+  async storeReview(reviewDetails) {
     if (reviewDetails > 5 || reviewDetails < 1) return false;
-
-    return new Order(reviewDetails);
+    const newOrder = new Order(reviewDetails);
+    return await newOrder.create();
   }
 
-  filterOrdersDB(orderId, opts) {
+  async filterOrdersDB(orderId, opts) {
     /*
       Example opts = {
         order: [
@@ -22,7 +22,7 @@ class OrderManager {
       }
     */
 
-    const order = this.requestOrderDetails(orderId);
+    const order = await this.requestOrderDetails(orderId);
     for (const elem of opts["order"]) {
       if (order[elem.key] != elem.value) return false;
     }
@@ -34,17 +34,19 @@ class OrderManager {
     return true;
   }
 
-  requestOrderDetails(orderId) {
-    return Order.get(orderId);
+  async requestOrderDetails(orderId) {
+    return await Order.get(orderId);
   }
 
   generateReceipt() {
     throw "Not Implemented Error";
   }
 
-  updatePaymentStatus(orderId) {
-    const order = this.requestOrderDetails(orderId);
-    return order.setHasPaid(true);
+  async updatePaymentStatus(orderId) {
+    const currOrder = await this.requestOrderDetails(orderId);
+    if (!currOrder)
+      return;
+    return await Order.setHasPaid(currOrder.orderId, true);
   }
 }
 
