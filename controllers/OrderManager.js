@@ -1,12 +1,16 @@
+/**
+ * @author Ryan Rehman <ryanrehman99@gmail.com>
+ */
+
 const Order = require("../models/Order").Order;
 
 class OrderManager {
   constructor() {}
 
-  async storeReview(reviewDetails) {
+  async storeReview(reviewDetails, orderId) {
     if (reviewDetails > 5 || reviewDetails < 1) return false;
     const newOrder = new Order(reviewDetails);
-    return await newOrder.create();
+    return await newOrder.create(orderId);
   }
 
   async filterOrdersDB(orderId, opts) {
@@ -44,8 +48,7 @@ class OrderManager {
 
   async updatePaymentStatus(orderId) {
     const currOrder = await this.requestOrderDetails(orderId);
-    if (!currOrder)
-      return;
+    if (!currOrder) return;
     return await Order.setHasPaid(currOrder.orderId, true);
   }
 }

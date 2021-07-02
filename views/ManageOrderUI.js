@@ -1,24 +1,34 @@
+/**
+ * @author Ryan Rehman <ryanrehman99@gmail.com>
+ */
+
 const orderManager = require("../controllers/OrderManager").order_manager;
 
 class ManageOrderUI {
-  addReview(req, resp) {
-    orderManager.storeReview(req.params.orderId, req.query.reviewDetails);
+  async addReview(req, resp) {
+    await orderManager.storeReview(
+      parseInt(req.query.reviewDetails, 10),
+      parseInt(req.params.orderId, 10)
+    );
     resp.sendStatus(200);
   }
 
-  filterOrders(req, resp) {
-    orderManager.filterOrdersDB(req.params.orderId, req.query.opts);
+  async filterOrders(req, resp) {
+    await orderManager.filterOrdersDB(req.params.orderId, req.query.opts);
     resp.sendStatus(200);
   }
 
-  getOrderDetails(req, resp) {
-    orderManager.requestOrderDetails(req.params.orderId);
-    resp.sendStatus(200);
+  async getOrderDetails(req, resp) {
+    resp
+      .status(200)
+      .json(
+        await orderManager.requestOrderDetails(parseInt(req.params.orderId, 10))
+      );
   }
 }
 
 manage_order_ui = new ManageOrderUI();
 
 module.exports = {
-  ManageOrderUI : manage_order_ui,
+  ManageOrderUI: manage_order_ui,
 };

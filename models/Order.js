@@ -1,3 +1,7 @@
+/**
+ * @author Ryan Rehman <ryanrehman99@gmail.com>
+ */
+
 const orderDB = require("../database/Order");
 // const Bid = require("../models/Bid").Bid;
 
@@ -13,14 +17,17 @@ class Order {
     this.paymentHash = Math.random().toString(36).substring(PAYMENT_HASH_SIZE);
   }
 
-  async create() {
+  async create(orderId) {
+    if (orderId == undefined) {
+      orderId = this.orderId;
+    }
     const record = {
-      orderId: this.orderId,
+      orderId: orderId,
       bidId: -1,
       hasPaid: this.hasPaid,
       reviewDetails: this.reviewDetails,
-      paymentHash: this.paymentHash
-    }
+      paymentHash: this.paymentHash,
+    };
     await orderDB.createOrder(record);
 
     return await Order.get(this.orderId);
@@ -28,7 +35,7 @@ class Order {
 
   static async setHasPaid(orderId, value) {
     try {
-      await orderDB.updateOrder({orderId}, {hasPaid: 1});
+      await orderDB.updateOrder({ orderId }, { hasPaid: 1 });
     } catch (error) {
       console.error("DB update failed" + error);
       return false;
@@ -38,9 +45,8 @@ class Order {
   }
 
   static async get(orderId) {
-    const currOrder = await orderDB.getOrder(({orderId}));
-    if (!currOrder[0])
-      return false;
+    const currOrder = await orderDB.getOrder({ orderId });
+    if (!currOrder[0]) return false;
     return currOrder[0]["dataValues"];
   }
 }

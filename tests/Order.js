@@ -1,3 +1,7 @@
+/**
+ * @author Ryan Rehman <ryanrehman99@gmail.com>
+ */
+
 const orderDB = require("../database/Order");
 const orderManager = require("../controllers/OrderManager").order_manager;
 
@@ -31,26 +35,46 @@ const filterOpts = {
 newOrdersreviewDetails.forEach(async function (param, index) {
   let currOrder = await orderManager.storeReview(param);
 
-  console.assert(typeof currOrder === expectedOrdersData[index][0], `actual: ${typeof currOrder}, expected: ${expectedOrdersData[index][0]}, errorMsg: "New Order type check failed"`);
+  console.assert(
+    typeof currOrder === expectedOrdersData[index][0],
+    `actual: ${typeof currOrder}, expected: ${
+      expectedOrdersData[index][0]
+    }, errorMsg: "New Order type check failed"`
+  );
   if (!currOrder) {
     // Order not created
     return;
   }
-  const valid = await orderManager.filterOrdersDB(currOrder.orderId, filterOpts);
+  const valid = await orderManager.filterOrdersDB(
+    currOrder.orderId,
+    filterOpts
+  );
   currOrder = await orderManager.requestOrderDetails(currOrder.orderId);
-  console.assert(valid == expectedOrdersData[index][2], `actual: ${valid}, expected: ${expectedOrdersData[index][2]}, errorMsg: "Filter order check failed"`);
+  console.assert(
+    valid == expectedOrdersData[index][2],
+    `actual: ${valid}, expected: ${expectedOrdersData[index][2]}, errorMsg: "Filter order check failed"`
+  );
 
-  console.assert(!currOrder.hasPaid, `actual: ${currOrder.hasPaid}, expected: False, errorMsg: "has Paid before check failed"`);
-  
+  console.assert(
+    !currOrder.hasPaid,
+    `actual: ${currOrder.hasPaid}, expected: False, errorMsg: "has Paid before check failed"`
+  );
+
   await orderManager.updatePaymentStatus(currOrder.orderId);
 
   currOrder = await orderManager.requestOrderDetails(currOrder.orderId);
-  console.assert(currOrder.hasPaid, `actual: ${currOrder.hasPaid}, expected: True, errorMsg: "has Paid after check failed"`);
+  console.assert(
+    currOrder.hasPaid,
+    `actual: ${currOrder.hasPaid}, expected: True, errorMsg: "has Paid after check failed"`
+  );
 });
 
-async function testNonExistantOrderId () {
+async function testNonExistantOrderId() {
   const NON_EXISTANT_ORDER_ID = 100;
   const found = await orderManager.requestOrderDetails(NON_EXISTANT_ORDER_ID);
-  console.assert(!found, `actual: ${found}, expected: False, errorMsg: "non existant order id check failed"`);
+  console.assert(
+    !found,
+    `actual: ${found}, expected: False, errorMsg: "non existant order id check failed"`
+  );
 }
 testNonExistantOrderId();

@@ -1,3 +1,6 @@
+/**
+ * @author Ryan Rehman <ryanrehman99@gmail.com>
+ */
 class MakePaymentUI {
   makePayment(req, resp) {
     // notImplementedYet()
@@ -13,5 +16,5 @@ class MakePaymentUI {
 make_payment_ui = new MakePaymentUI();
 
 module.exports = {
-  MakePaymentUI : make_payment_ui,
+  MakePaymentUI: make_payment_ui,
 };
