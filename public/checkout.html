@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Manage Orders</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+
+  <body>
+    <br /><br /><br /><br /><br /><br />
+    <section>
+      <div class="product">
+        <img
+          src="https://i.imgur.com/EHyR2nP.png"
+          alt="The cover of Stubborn Attachments"
+        />
+        <div class="description">
+          <h3>Order ID: 15</h3>
+          <h3>🌾 Wheat</h3>
+          <h4>Hi 8759</h4>
+          <h5>Rs 500000</h5>
+        </div>
+      </div>
+      <form action="/pay/makePayment?price=500000&type=wheat" method="POST">
+        <button type="button">Order Details</button>
+        <button type="button">Give Review</button>
+        <button type="submit" class="btn btn-primary">Make Payment</button>
+      </form>
+    </section>
+    <br /><br /><br /><br />
+    <section>
+      <div class="product">
+        <img
+          src="https://i.imgur.com/EHyR2nP.png"
+          alt="The cover of Stubborn Attachments"
+        />
+        <div class="description">
+          <h3>Order ID: 21</h3>
+          <h3>🥔 Potato</h3>
+          <h4>Chandramukhi</h4>
+          <h5>Rs 200000</h5>
+        </div>
+      </div>
+      <form action="/pay/makePayment?price=200000&type=potato" method="POST">
+        <button type="button">Order Details</button>
+        <button type="button">Give Review</button>
+        <button type="submit" class="btn btn-primary">Make Payment</button>
+      </form>
+    </section>
+    <br /><br /><br /><br />
+    <section>
+      <div class="product">
+        <img
+          src="https://i.imgur.com/EHyR2nP.png"
+          alt="The cover of Stubborn Attachments"
+        />
+        <div class="description">
+          <h3>Order ID: 34</h3>
+          <h3>🍚 Rice</h3>
+          <h4>Basmati</h4>
+          <h5>Rs 60000</h5>
+        </div>
+      </div>
+      <form action="/pay/makePayment?price=60000&type=rice" method="POST">
+        <button type="button">Order Details</button>
+        <button type="button">Give Review</button>
+        <button type="submit" class="btn btn-primary">Make Payment</button>
+      </form>
+    </section>
+  </body>
+</html>

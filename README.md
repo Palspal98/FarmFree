@@ -49,3 +49,20 @@ And we retrieve it using the second.
   "paymentHash": "hlk2a"
 }
 ```
+
+# Make Payment
+
+Go to `http://localhost:3000/checkout.html`
+
+For testing purposes:
+
+```
+Payment succeeds:                       4242 4242 4242 4242
+Payment is declined:                    4000 0000 0000 9995
+```
+
+UI Screens:
+
+![pic1](https://user-images.githubusercontent.com/40122794/124977485-27848800-e04e-11eb-9c62-401bb69390d0.png)
+
+![pic2](https://user-images.githubusercontent.com/40122794/124955586-c7351c80-e034-11eb-882b-cef47e547408.png)
