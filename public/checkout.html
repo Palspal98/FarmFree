@@ -1,86 +1,94 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Manage Orders</title>
-    <link rel="stylesheet" href="./style.css" />
-    <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://js.stripe.com/v3/"></script>
-  </head>
 
-  <body>
-    <br /><br /><br /><br /><br /><br />
-    <section>
-      <div class="product">
-        <img
-          src="https://i.imgur.com/EHyR2nP.png"
-          alt="The cover of Stubborn Attachments"
-        />
-        <div class="description">
-          <h3>Order ID: 0</h3>
-          <h3>🌾 Wheat</h3>
-          <h4>Hi 8759</h4>
-          <h5>Rs 500000</h5>
-        </div>
+<head>
+  <title>Manage Orders</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="./style.css" />
+  <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+
+<body>
+  <div class="display_box alert alert-primary" role="alert">
+    Note: This is a test page to run the OrderManager APIs and the usercase for MakePayment.
+    Click on `orderDetails` you should get the order data stored in the DB.
+    Notice the `hasPaid` field is set to false.
+    Now click `Make Payment` and perform a payment (success card no. is mentioned in the README file).
+    On clicking `orderDetails` again for that specific you should see the DB response updated to true if payment was
+    successful.
+    Re-run the order tests for a fresh DB state.
+  </div>
+  <br /><br />
+  <section data-orderid=0>
+    <div class="product">
+      <img src="https://i.imgur.com/EHyR2nP.png" alt="The cover of Stubborn Attachments" />
+      <div class="description" data-orderId=0>
+        <h3>Order ID: 0</h3>
+        <h3>🌾 Wheat</h3>
+        <h4>Hi 8759</h4>
+        <h5>Rs 500000</h5>
       </div>
-      <form
-        action="/pay/makePayment?price=500000&type=wheat&orderId=0"
-        method="POST"
-      >
-        <button type="button">Order Details</button>
-        <button type="button">Give Review</button>
-        <button type="submit" class="btn btn-primary">Make Payment</button>
-      </form>
-    </section>
-    <br /><br /><br /><br />
-    <section>
-      <div class="product">
-        <img
-          src="https://i.imgur.com/EHyR2nP.png"
-          alt="The cover of Stubborn Attachments"
-        />
-        <div class="description">
-          <h3>Order ID: 1</h3>
-          <h3>🥔 Potato</h3>
-          <h4>Chandramukhi</h4>
-          <h5>Rs 200000</h5>
-        </div>
+    </div>
+    <form action="/pay/makePayment?price=500000&type=wheat&orderId=0" method="POST">
+      <button type="button" class="orderDetails">Order Details</button>
+      <button type="submit" class="btn btn-primary">Make Payment</button>
+    </form>
+  </section>
+  <br /><br /><br /><br />
+  <section data-orderid=1>
+    <div class="product">
+      <img src="https://i.imgur.com/EHyR2nP.png" alt="The cover of Stubborn Attachments" />
+      <div class="description" data-orderId=1>
+        <h3>Order ID: 1</h3>
+        <h3>🥔 Potato</h3>
+        <h4>Chandramukhi</h4>
+        <h5>Rs 200000</h5>
       </div>
-      <form
-        action="/pay/makePayment?price=200000&type=potato&orderId=1"
-        method="POST"
-      >
-        <button type="button">Order Details</button>
-        <button type="button">Give Review</button>
-        <button type="submit" class="btn btn-primary">Make Payment</button>
-      </form>
-    </section>
-    <br /><br /><br /><br />
-    <section>
-      <div class="product">
-        <img
-          src="https://i.imgur.com/EHyR2nP.png"
-          alt="The cover of Stubborn Attachments"
-        />
-        <div class="description">
-          <h3>Order ID: 2</h3>
-          <h3>🍚 Rice</h3>
-          <h4>Basmati</h4>
-          <h5>Rs 60000</h5>
-        </div>
+    </div>
+    <form action="/pay/makePayment?price=200000&type=potato&orderId=1" method="POST">
+      <button type="button" class="orderDetails">Order Details</button>
+      <button type="submit" class="btn btn-primary">Make Payment</button>
+    </form>
+  </section>
+  <br /><br /><br /><br />
+  <section data-orderid=2>
+    <div class="product">
+      <img src="https://i.imgur.com/EHyR2nP.png" alt="The cover of Stubborn Attachments" />
+      <div class="description">
+        <h3>Order ID: 2</h3>
+        <h3>🍚 Rice</h3>
+        <h4>Basmati</h4>
+        <h5>Rs 60000</h5>
       </div>
-      <form
-        action="/pay/makePayment?price=60000&type=rice&orderId=2"
-        method="POST"
-      >
-        <button type="button">Order Details</button>
-        <button type="button">Give Review</button>
-        <button type="submit" class="btn btn-primary">Make Payment</button>
-      </form>
-    </section>
-  </body>
+    </div>
+    <form action="/pay/makePayment?price=60000&type=rice&orderId=2" method="POST">
+      <button type="button" class="orderDetails">Order Details</button>
+      <button type="submit" class="btn btn-primary">Make Payment</button>
+    </form>
+  </section>
+
+  <script>
+    function display(data) {
+      $(".display_box").text(JSON.stringify(data));
+    }
+
+    $(".orderDetails").on("click", (e) => {
+      const orderId = $(e.target).closest("section").data("orderid");
+      $.ajax({
+        type: "GET",
+        url: "/order/" + orderId + "/getOrderDetails",
+        success: display,
+        error: display
+      });
+    })
+  </script>
+</body>
+
 </html>
