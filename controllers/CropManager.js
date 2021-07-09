@@ -1,7 +1,12 @@
+/**
+ * @author Somodyuti Pal <palspal1998@gmail.com>
+ */
+
 const Crop = require("../models/Crop").Crop;
+const possibleVarities = ["Potato", "Wheat", "Mango"];
 
 class CropManager {
-  constructor() {}
+  constructor() { }
 
   addNewCrop(
     name,
@@ -15,6 +20,8 @@ class CropManager {
     location,
     listingTimestamp
   ) {
+    if (!possibleVarities.includes(variety)) return false;
+
     return new Crop(
       name,
       variety,
@@ -31,7 +38,11 @@ class CropManager {
 
   updateCrop(listingId, field, value) {
     const crop = Crop.get(listingId);
+    console.log(field);
     crop[field] = value;
+    console.log(crop);
+    // CropDB.push(crop);
+    // return true;
   }
 
   assessCrop(listingId) {
@@ -48,8 +59,8 @@ class CropManager {
       ];
     */
 
-    const crop = Crop.get(listingId);
-    for (const elem of opts) {
+    const crop = this.showCropDetails(listingId);
+    for (const elem of opts["crop"]) {
       if (crop[elem.key] != elem.value) return false;
     }
 
