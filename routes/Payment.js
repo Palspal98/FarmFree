@@ -9,6 +9,8 @@ paymentRoutes.route("/makePayment").post(MakePaymentUI.makePayment);
 
 paymentRoutes.route("/downloadReceipt").get(MakePaymentUI.downloadReceipt);
 
+paymentRoutes.route("/success").get(MakePaymentUI.success);
+
 module.exports = {
   paymentRoutes,
 };

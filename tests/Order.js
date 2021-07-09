@@ -9,7 +9,7 @@ const orderManager = require("../controllers/OrderManager").order_manager;
 orderDB.reset();
 
 // These are the mandatory params required to create a new order
-newOrdersreviewDetails = [2, 4, 15];
+newOrdersreviewDetails = [1, 2, 4, 15];
 
 // These are the expected responses for our functions:
 // index 0: to check whether order gets successfully created
@@ -17,6 +17,7 @@ newOrdersreviewDetails = [2, 4, 15];
 //          (autoincrement according to DB)
 // index 2: to check our filter function
 expectedOrdersData = [
+  ["object", 0, false],
   ["object", 0, false],
   ["object", 1, true],
   ["boolean", undefined, undefined],
@@ -26,6 +27,7 @@ expectedOrdersData = [
 // filter function to check whether this object is valid or not
 const filterOpts = {
   order: [
+    { key: "hasPaid", value: 0 },
     { key: "hasPaid", value: 0 },
     { key: "reviewDetails", value: 4 },
   ],
@@ -60,13 +62,16 @@ newOrdersreviewDetails.forEach(async function (param, index) {
     `actual: ${currOrder.hasPaid}, expected: False, errorMsg: "has Paid before check failed"`
   );
 
-  await orderManager.updatePaymentStatus(currOrder.orderId);
+  await orderManager.updatePaymentStatus(currOrder.orderId, 1);
 
   currOrder = await orderManager.requestOrderDetails(currOrder.orderId);
   console.assert(
     currOrder.hasPaid,
     `actual: ${currOrder.hasPaid}, expected: True, errorMsg: "has Paid after check failed"`
   );
+
+  // reset data
+  await orderManager.updatePaymentStatus(currOrder.orderId, 0);
 });
 
 async function testNonExistantOrderId() {

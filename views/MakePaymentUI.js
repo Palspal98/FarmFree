@@ -2,9 +2,11 @@
  * @author Ryan Rehman <ryanrehman99@gmail.com>
  */
 const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
+const orderManager = require("../controllers/OrderManager").order_manager;
 
 class MakePaymentUI {
   async makePayment(req, resp) {
+    const orderId = req.query.orderId;
     const price = parseInt(req.query.price);
     const type = req.query.type;
 
@@ -24,7 +26,7 @@ class MakePaymentUI {
         },
       ],
       mode: "payment",
-      success_url: `http://${req.headers.host}/success.html`,
+      success_url: `http://${req.headers.host}/pay/success?orderId=${orderId}`,
       cancel_url: `http://${req.headers.host}/cancel.html`,
     });
 
@@ -33,6 +35,12 @@ class MakePaymentUI {
 
   async downloadReceipt(req, resp) {
     resp.redirect(200, `http://${req.headers.host}/success.html`);
+  }
+
+  async success(req, resp) {
+    const orderId = parseInt(req.query.orderId);
+    await orderManager.updatePaymentStatus(orderId, 1);
+    resp.render("success");
   }
 }
 

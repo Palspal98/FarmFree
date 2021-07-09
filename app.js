@@ -5,6 +5,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const path = require("path");
 // const cropRoutes = require("./routes/Crop").cropRoutes;
 // const bidRoutes = require("./routes/Bid").bidRoutes;
 const orderRoutes = require("./routes/Order").orderRoutes;
@@ -15,6 +16,8 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
+app.set("view engine", "pug");
+app.set("views", path.join(__dirname, "public"));
 
 port = 3000;
 const server = app.listen(port);

@@ -46,10 +46,10 @@ class OrderManager {
     throw "Not Implemented Error";
   }
 
-  async updatePaymentStatus(orderId) {
+  async updatePaymentStatus(orderId, value) {
     const currOrder = await this.requestOrderDetails(orderId);
     if (!currOrder) return;
-    return await Order.setHasPaid(currOrder.orderId, true);
+    return await Order.setHasPaid(currOrder.orderId, value);
   }
 }
 

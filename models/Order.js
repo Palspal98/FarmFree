@@ -35,7 +35,7 @@ class Order {
 
   static async setHasPaid(orderId, value) {
     try {
-      await orderDB.updateOrder({ orderId }, { hasPaid: 1 });
+      await orderDB.updateOrder({ orderId }, { hasPaid: value });
     } catch (error) {
       console.error("DB update failed" + error);
       return false;

@@ -53,6 +53,8 @@ And we retrieve it using the second.
 # Make Payment
 
 Go to `http://localhost:3000/checkout.html`
+Successfully pay and the DB row will have gotten updated.
+( Note: Run `node tests/Order.js` first )
 
 For testing purposes:
 
