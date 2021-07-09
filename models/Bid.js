@@ -10,10 +10,15 @@ class Bid {
     this.quantity = quantity;
     this.isSelected = isSelected;
     this.createDateTime = createDateTime;
+    BidDB.push(this);
   }
 
   static get(bidId) {
-    return BidDB[bidId];
+    for (const bidRow of BidDB) {
+      if (bidRow.bidId == bidId) return bidRow;
+    }
+
+    return false;
   }
 }
 

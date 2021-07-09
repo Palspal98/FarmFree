@@ -6,7 +6,7 @@ const Crop = require("../models/Crop").Crop;
 const possibleVarities = ["Potato", "Wheat", "Mango"];
 
 class CropManager {
-  constructor() { }
+  constructor() {}
 
   addNewCrop(
     name,

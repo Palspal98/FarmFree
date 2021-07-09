@@ -1,20 +1,16 @@
-const ViewBidUI = require("../views/ViewBidUI").ManageOrderUI;
-const PlaceBidUI = require("../views/PlaceBidUI").MakePaymentUI;
+const ViewBidUI = require("../views/ViewBidUI").ViewBidUI;
+const PlaceBidUI = require("../views/PlaceBidUI").PlaceBidUI;
 const bidRoutes = require("express").Router({ mergeParams: true });
 
 bidRoutes.route("/filterListing").get(ViewBidUI.filterListing);
 
-bidRoutes.route("/selectListing").get(ViewBidUI.selectListing);
-
-bidRoutes.route("/selectBid").get(ViewBidUI.selectBid);
-
-bidRoutes.route("/conmfirmBid").get(ViewBid.conmfirmBid);
+bidRoutes.route("/conmfirmBid").get(ViewBidUI.confirmBid);
 
 bidRoutes.route("/placeBid").get(PlaceBidUI.placeBid);
 
-bidRoutes.route("/updateOrDeleteBid").get(PlaceBidUI.updateOrDeleteBid);
+bidRoutes.route("/updateBid").get(PlaceBidUI.updateBid);
 
-bidRoutes.route("/selectBid").get(PlaceBidUI.selectBid);
+bidRoutes.route("/deleteBid").get(PlaceBidUI.deleteBid);
 
 module.exports = {
   bidRoutes,

@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
 // const cropRoutes = require("./routes/Crop").cropRoutes;
-// const bidRoutes = require("./routes/Bid").bidRoutes;
+const bidRoutes = require("./routes/Bid").bidRoutes;
 const orderRoutes = require("./routes/Order").orderRoutes;
 const paymentRoutes = require("./routes/Payment").paymentRoutes;
 
@@ -26,7 +26,7 @@ app.get("/health", (req, res) => {
   res.send("health");
 });
 
-// app.use('/bid', Bid);
+app.use("/bid/:bidId", bidRoutes);
 app.use("/order/:orderId", orderRoutes);
 app.use("/pay", paymentRoutes);
 

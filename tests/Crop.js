@@ -19,31 +19,31 @@ const location = "kolkata";
 const listingTimestamp = "25-10-2019";
 
 const found_new = CropManager.addNewCrop(
-    name,
-    variety,
-    subVariety,
-    quantity,
-    minumumRate,
-    grainDescription,
-    imageUrl,
-    expireDateTime,
-    location,
-    listingTimestamp
+  name,
+  variety,
+  subVariety,
+  quantity,
+  minumumRate,
+  grainDescription,
+  imageUrl,
+  expireDateTime,
+  location,
+  listingTimestamp
 );
 console.assert(!found_new);
 // console.log(CropDB);
 variety = "Potato";
 const found2 = CropManager.addNewCrop(
-    name,
-    variety,
-    subVariety,
-    quantity,
-    minumumRate,
-    grainDescription,
-    imageUrl,
-    expireDateTime,
-    location,
-    listingTimestamp
+  name,
+  variety,
+  subVariety,
+  quantity,
+  minumumRate,
+  grainDescription,
+  imageUrl,
+  expireDateTime,
+  location,
+  listingTimestamp
 );
 console.assert(found2);
 
@@ -62,19 +62,19 @@ console.log(show.isVerified);
 console.log(CropDB);
 
 let filterOpts = {
-    crop: [
-        { key: "isVerified", value: false },
-        // { key: "reviewDetails", value: 4 },
-    ],
+  crop: [
+    { key: "isVerified", value: false },
+    // { key: "reviewDetails", value: 4 },
+  ],
 };
 
 console.assert(!CropManager.filterCrops(0, filterOpts));
 
 filterOpts = {
-    crop: [
-        { key: "isVerified", value: true },
-        // { key: "reviewDetails", value: 4 },
-    ],
+  crop: [
+    { key: "isVerified", value: true },
+    // { key: "reviewDetails", value: 4 },
+  ],
 };
 
 console.assert(CropManager.filterCrops(0, filterOpts));

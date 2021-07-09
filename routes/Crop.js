@@ -18,5 +18,5 @@ cropRoutes.route("/getCropDetails").get(ManageCropUI.getCropDetails);
 cropRoutes.route("/assesCrop").get(ManageCropUI.assesCrop);
 
 module.exports = {
-    cropRoutes,
+  cropRoutes,
 };

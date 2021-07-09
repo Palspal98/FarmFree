@@ -7,12 +7,13 @@ class BidManager {
     return Bid.get(bidId);
   }
 
-  placeBid(bidId, creator, price, quantity, isSelected, createDateTime) {
-    return new Bid(bidId, creator, price, quantity, isSelected, createDateTime);
+  placeBid(creator, price, quantity, isSelected, createDateTime) {
+    if (price > 10 && isSelected)
+      return new Bid(creator, price, quantity, isSelected, createDateTime);
   }
 
-  updateCrop(bidId, field, value) {
-    const bid = Crop.get(bidId);
+  updateBid(bidId, field, value) {
+    const bid = Bid.get(bidId);
     bid[field] = value;
   }
 
@@ -27,9 +28,9 @@ class BidManager {
     return bid;
   }
 
-  filterBidDB(bidId, opts) {
+  filterBidsDB(bidId, opts) {
     const bid = Bid.get(bidId);
-    for (const elem of opts) {
+    for (const elem of opts["bid"]) {
       if (bid[elem.key] != elem.value) return false;
     }
     return true;
