@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "bin": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prettier": "npx prettier --write ."
@@ -18,5 +19,15 @@
     "pug": "^3.0.2",
     "sequelize": "^6.6.4",
     "stripe": "^8.160.0"
+  },
+  "pkg": {
+    "scripts": "build/**/*.js",
+    "assets": "public/**/*",
+    "targets": [
+      "node10-linux-x64",
+      "node10-macos-x64",
+      "node10-win-x64"
+    ],
+    "outputPath": "dist"
   }
 }
