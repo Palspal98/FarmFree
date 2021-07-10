@@ -1,3 +1,7 @@
+/**
+ * @author Salman Asif <salmanasif35@gmail.com>
+ */
+
 const Bid = require("../models/Bid").Bid;
 
 class BidManager {
