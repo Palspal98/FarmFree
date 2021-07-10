@@ -65,7 +65,7 @@ Payment is declined:                    4000 0000 0000 9995
 
 UI Screens:
 
-![pic1](https://user-images.githubusercontent.com/40122794/125108775-1d22c680-e100-11eb-88e5-23928fd07807.png)
+![pic1](https://user-images.githubusercontent.com/40122794/125158775-e8ab1b00-e190-11eb-96e8-47e9758f636f.png)
 
 ![pic2](https://user-images.githubusercontent.com/40122794/124955586-c7351c80-e034-11eb-882b-cef47e547408.png)
 
