@@ -1,3 +1,7 @@
+/**
+ * @author Salman Asif <salmanasif35@gmail.com>
+ */
+
 const BidDB = require("../database/Bid").BidDB;
 const BidManager = require("../controllers/BidManager").bid_manager;
 
