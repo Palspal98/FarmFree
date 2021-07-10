@@ -1,3 +1,7 @@
+/**
+ * @author Salman Asif <salmanasif35@gmail.com>
+ */
+
 const ViewBidUI = require("../views/ViewBidUI").ViewBidUI;
 const PlaceBidUI = require("../views/PlaceBidUI").PlaceBidUI;
 const bidRoutes = require("express").Router({ mergeParams: true });
